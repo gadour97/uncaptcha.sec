@@ -1,0 +1,18 @@
+	pyautogui.moveTo(93, 78)#backtocaptchasite
+	pyautogui.leftClick()
+	time.sleep(3)
+	try:
+
+		print("Removing old files...")
+		os.system('rm ./audio.wav 2>/dev/null') # These files may be left over from previous runs, and should be removed just in case.
+		os.system('rm ' + DOWNLOAD_LOCATION + 'audio.mp3 2>/dev/null')
+		# First, download the file
+		downloadResult = downloadCaptcha()
+		if downloadResult == 2:
+			pyautogui.moveTo(CLOSE_LOCATION)
+			pyautogui.click()
+			return 2
+		elif downloadResult == -1:
+			pyautogui.moveTo(CLOSE_LOCATION)
+			pyautogui.click()
+			return 3
